@@ -1,0 +1,74 @@
+{% include base_path %}
+
+{% if post.header.teaser %}
+  {% capture teaser %}{{ post.header.teaser }}{% endcapture %}
+{% else %}
+  {% assign teaser = site.teaser %}
+{% endif %}
+
+{% if post.id %}
+  {% assign title = post.title | markdownify | remove: "<p>" | remove: "</p>" %}
+{% else %}
+  {% assign title = post.title %}
+{% endif %}
+
+<div class="{{ include.type | default: "list" }}__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+
+    {% if include.type == "grid" and teaser %}
+      <div class="archive__item-teaser">
+        <img
+          src={% if teaser contains "://" %}"{{ teaser }}"{% else %}"{{ teaser | prepend: "/images/" | prepend: base_path }}"{% endif %}
+          alt="">
+      </div>
+    {% endif %}
+
+    <h2 class="archive__item-title" itemprop="headline">
+      {% if post.link %}
+        <a href="{{ post.link }}">{{ title }}</a>
+        <a href="{{ base_path }}{{ post.url }}" rel="permalink">
+          <i class="fa fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span>
+        </a>
+      {% else %}
+        <a href="{{ base_path }}{{ post.url }}" rel="permalink">{{ title }}</a>
+      {% endif %}
+    </h2>
+
+    {% if post.date %}
+      <p class="page__meta">
+        <i class="fa fa-clock" aria-hidden="true"></i> {{ post.date | date: '%B %d, %Y' }}
+      </p>
+    {% endif %}
+
+    {% if post.venue %}
+      <p class="archive__item-excerpt" itemprop="description">
+        {{ post.type }}, {{ post.venue }}, {{ post.location }}
+      </p>
+    {% endif %}
+
+    {%- comment -%}
+    Show excerpt text (so "More information →" in the talk body appears),
+    but NEVER show images in the list view.
+    This relies on excerpt_separator: "<!--more-->" in _config.yml.
+    {%- endcomment -%}
+    {% if post.excerpt %}
+      <p class="archive__item-excerpt" itemprop="description">
+        {{ post.excerpt
+          | replace_regex: '<a[^>]*>\s*<img[^>]*>\s*</a>', ''
+          | replace_regex: '<img[^>]*>', ''
+          | markdownify
+        }}
+      </p>
+    {% endif %}
+
+    {%- comment -%}
+    If you also use front-matter 'link:' (optional), keep it as an extra line.
+    {%- endcomment -%}
+    {% if post.link %}
+      <p class="archive__item-excerpt">
+        <a href="{{ post.link }}" target="_blank" rel="noopener">More information →</a>
+      </p>
+    {% endif %}
+
+  </article>
+</div>

@@ -1,0 +1,209 @@
+---
+---
+
+/*
+ * This file controls what is imported from /_sass
+ *
+ * Note that the files are processed in the order they are imported, so they are partly
+   sorted by the dependencies. Also, the first two lines of the file are required by Jekyll.
+ */
+
+@import
+    "vendor/breakpoint/breakpoint",
+
+    "themes",
+    "theme/{{ site.site_theme | default: 'default' | append: '_light' }}",
+    "theme/{{ site.site_theme | default: 'default' | append: '_dark' }}",
+
+    "include/mixins",
+    "vendor/susy/susy",
+
+    "layout/reset",
+    "layout/base",
+
+    "include/utilities",
+    "layout/tables",
+    "layout/buttons",
+    "layout/notices",
+    "layout/masthead",
+    "layout/navigation",
+    "layout/footer",
+    "syntax",
+
+    "layout/forms",
+
+    "layout/page",
+    "layout/archive",
+    "layout/sidebar",
+    "layout/json_cv",
+
+    "vendor/font-awesome/fontawesome",
+    "vendor/font-awesome/solid",
+    "vendor/font-awesome/brands"
+;
+
+.section-block {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-top: 1.0rem;
+}
+
+.section-block::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.3rem;
+  bottom: 0.3rem;
+
+  width: 3px; /* ← 두께: 2px → 3px */
+  background-color: rgba(0, 0, 0, 0.22); /* ← 라이트 모드에서 더 잘 보이게 */
+}
+
+/* Dark mode */
+html[data-theme="dark"] .section-block::before {
+  background-color: rgba(255, 255, 255, 0.18);
+}
+.portfolio-row {
+  margin-left: 1.5rem;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.portfolio-img.slide {
+  border-radius: 8px;
+  height: 200px;
+  width: auto;
+  object-fit: contain;
+}
+
+.portfolio-img.photo {
+  border-radius: 8px;
+  height: 200px;
+  width: 320px;
+  object-fit: cover;
+}
+
+.portfolio-img.auto {
+  border-radius: 8px;
+  height: 400px;
+  width: auto;
+  object-fit: contain;
+}
+
+
+
+/* Conference presentation layout */
+.talk-meta {
+  display: inline;
+  font-size: 0.85rem;
+  color: #959191;
+  margin: 0.1rem 0 0.05rem 0;
+}
+
+.talk-title {
+  display: block;
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0 0 0.15rem 0;
+}
+
+.talk-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.85rem;
+  color: #1158b5;
+  margin: 0 0 0.35rem 0;
+  cursor: pointer;
+}
+
+/* 핵심: 리스트 간격 줄이기 */
+.page__content ul li {
+  margin-bottom: 0.6rem !important;
+}
+
+
+/* ===== CV readability boost ===== */
+.cv-section { margin-bottom: 2.2rem; }
+.cv-section h2 { margin-bottom: 1.0rem; }
+
+/* ❗ cv-item에 콤마(,) 제거 + margin-left는 item 말고 content에 주는게 안전 */
+.cv-item { margin-bottom: 1.25rem; }
+
+/* ✅ 내용만 살짝 들여쓰기 (Education/Research/Presentations 전부 동일 적용됨) */
+.cv-item-content { margin-left: 0.6rem; }
+
+.cv-item-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: baseline;
+}
+
+.cv-item-title {
+  font-weight: 650;
+  line-height: 1.25;
+}
+
+.cv-item-date {
+  white-space: nowrap;
+  color: #777;
+  font-size: 0.95rem;
+}
+
+.cv-item-subtitle {
+  margin-top: 0.25rem;
+  color: #555;
+  line-height: 1.35;
+}
+
+.cv-item-detail {
+  margin-top: 0.35rem;
+  color: #666;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.cv-item-detail.cv-compact { margin-top: 0.2rem; }
+
+.cv-item-sep {
+  margin: 0 0.35rem;
+  color: #999;
+}
+
+/* Dark mode */
+html[data-theme="dark"] .cv-item-date { color: #aaa; }
+html[data-theme="dark"] .cv-item-subtitle { color: #cfcfcf; }
+html[data-theme="dark"] .cv-item-detail { color: #bdbdbd; }
+html[data-theme="dark"] .cv-item-sep { color: #888; }
+
+/* Presentations */
+.cv-present-meta{
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #888;
+  margin-left: 0.25rem;
+}
+
+.cv-present-title{
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.45;
+}
+
+/* 다크모드 */
+html[data-theme="dark"] .cv-present-title{
+  color: #cfcfcf;
+}
+
+/* 제목 아래 내용만 들여쓰기 */
+.cv-item-content {
+  margin-left: 1.1rem;   /* 원하는 들여쓰기 크기 */
+}
+
+/* 조금 더 촘촘하게 */
+.cv-item-detail.cv-compact {
+  margin-left: 1.1rem;
+}
