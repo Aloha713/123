@@ -5,13 +5,13 @@ var addressPoints = [
     126.9782914
   ],
   [
-    "Explosive motion of spherical hydrogel via the Leidenfrost effect (KSME 2024)<br />The Korean Society of Mechanical Engineers (KSME) Annual Conference 2024; Jeju, South Korea",
-    33.4887737,
-    126.4987083
-  ],
-  [
     "Leidenfrost-induced active matter dynamics of spherical hydrogels (APS DFD 2025)<br />APS Division of Fluid Dynamics Meeting; Houston, TX, USA",
     29.7589382,
     -95.3676974
+  ],
+  [
+    "Explosive motion of spherical hydrogel via the Leidenfrost effect (KSME 2024)<br />The Korean Society of Mechanical Engineers (KSME) Annual Conference 2024; Jeju, South Korea",
+    33.4887737,
+    126.4987083
   ]
 ];
